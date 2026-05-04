@@ -18,7 +18,7 @@ TuniCare est un site web conçu pour faciliter la gestion des patients par les m
 - HTML & CSS & JavaScript
 
 ## Installation
-1. visit: https://github.com/Mariem699/TuniCare
+1. visit: [https://github.com/Mariem699/TuniCare](https://github.com/Mariem699/TuniCare)
 1. Clone le repository 
 2. Crée une base de données MySQL (nommée par exemple `tunicare`).
 3. Importer la base de données.
@@ -34,10 +34,10 @@ TuniCare est un site web conçu pour faciliter la gestion des patients par les m
 - Aya Essid
 - Salsabil Bargui
 - Mariam Elloumi
-- Mariem Rebai [GitHub : ](https://github.com/Mariem699)
+- Mariem Rebai  GitHub:[https://github.com/Mariem699](https://github.com/Mariem699)
 
 # Rapport du projet
-[visit: ](https://docs.google.com/document/d/1aTiBK92S4G6qzUHpe83Y2fM-hZoWE5nD/edit?usp=drive_link&ouid=114620211246783664736&rtpof=true&sd=true)
+visit: [lien du rapport](https://docs.google.com/document/d/1aTiBK92S4G6qzUHpe83Y2fM-hZoWE5nD/edit?usp=drive_link&ouid=114620211246783664736&rtpof=true&sd=true)
 
 ## Remarque
 Ce projet est un travail académique réalisé dans le cadre de la formation universitaire à l'ISIMS. Il vise à renforcer les compétences en développement web, incluant HTML, CSS, et JavaScript, et constitue un entrainement a un projet de fin d’études (PFE/PFA)
