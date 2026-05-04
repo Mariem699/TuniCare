@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup Patient</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+#patient_form{
+    display: block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="formulaire">
+
+<h2>Patient Sign Up</h2>
+
+<div class="steps-bar" id="patient_bar">
+    <div class="step-line active"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+</div>
+
+<form action="patient.php" method="POST" id="patient_form">
+
+
+<div class="step active" id="patient_1">
+    <label>First Name</label>
+    <input type="text" name="p_fname" required>
+
+    <label>Last Name</label>
+    <input type="text" name="p_lname" required>
+
+    <label>Age</label>
+    <input type="number" name="p_age" required>
+    <label>Kg</label>
+    <input type="number" name="p_kg" required>
+
+    <label>Sex</label>
+    <div class="radio-group">
+        <label><input type="radio" name="sex" value="male" required> Male</label>
+        <label><input type="radio" name="sex" value="female"> Female</label>
+    </div>
+
+    <div class="nav">
+        <div></div>
+        <button type="button" class="next" onclick="nextPatient(1)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="patient_2">
+    <label>Email</label>
+    <input type="email" name="p_email" required>
+
+    <label>Phone</label>
+    <input type="tel" name="p_phone" required pattern="[0-9]{8,15}">
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('patient_1')">← Back</button>
+        <button type="button" class="next" onclick="nextPatient(2)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="patient_3">
+    <label>Medical History</label>
+
+    <div class="checkbox-group" id="check1">
+        <label><input type="checkbox" name="history[]" value="diabetes"> Diabetes</label>
+        <label><input type="checkbox" name="history[]" value="hypertension"> Hypertension</label>
+        <label><input type="checkbox" name="history[]" value="asthma"> Asthma</label>
+        <label><input type="checkbox" name="history[]" value="heart"> Heart Disease</label>
+        <label><input type="checkbox" name="history[]" value="other_history"> Other</label>
+        <label><input type="checkbox" name="history[]" value="none_history"> None</label>
+    </div>
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('patient_2')">← Back</button>
+        <button type="button" class="next" onclick="nextPatient(3)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="patient_4">
+    <label>Allergies</label>
+
+    <div class="checkbox-group" id="check2">
+        <label><input type="checkbox" name="allergies[]" value="food"> Food</label>
+        <label><input type="checkbox" name="allergies[]" value="respiratory"> Respiratory</label>
+        <label><input type="checkbox" name="allergies[]" value="skin"> Skin</label>
+        <label><input type="checkbox" name="allergies[]" value="drug"> Drug</label>
+        <label><input type="checkbox" name="allergies[]" value="insect"> Insect</label>
+        <label><input type="checkbox" name="allergies[]" value="work"> Work</label>
+        <label><input type="checkbox" name="allergies[]" value="other"> Other</label>
+        <label><input type="checkbox" name="allergies[]" value="none"> None</label>
+    </div>
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('patient_3')">← Back</button>
+        <button type="button" class="next" onclick="nextPatient(4)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="patient_5">
+    <label>Choose Doctor</label>
+
+    <select id="doctor_select" name="p_doctor">
+        <option>-- Select --</option>
+    </select>
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('patient_4')">← Back</button>
+        <button type="button" class="next" onclick="nextPatient(5)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="patient_6">
+    <label>Password</label>
+    <input type="password" id="pass" name="p_pass" required>
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirm" name="p_confirm" required>
+
+    <button type="submit" class="create-btn">Create Patient Account</button>
+</div>
+
+</form>
+
+</div>
+</div>
+<script>
+
+function showStep(id) {
+    document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function validateStep() {
+    let current = document.querySelector(".step.active");
+    let inputs = current.querySelectorAll("input, select");
+
+    for (let input of inputs) {
+        if (!input.checkValidity()) {
+            input.reportValidity();
+            return false;
+        }
+    }
+    return true;
+}
+
+function updatePatientBar(step) {
+    let lines = document.querySelectorAll("#patient_bar .step-line");
+
+    lines.forEach((line, index) => {
+        line.classList.toggle("active", index <= step);
+    });
+}
+
+function nextPatient(step) {
+
+    if (!validateStep()) return;
+
+    if (step === 1) {
+        if (!checkAgeEngine()) return;
+        showStep("patient_2");
+        updatePatientBar(1);
+    }
+
+    else if (step === 2) {
+        showStep("patient_3");
+        updatePatientBar(2);
+    }
+
+    else if (step === 3) {
+
+        if (!document.querySelectorAll("#check1 input:checked").length) {
+            alert("⚠️ Select at least one medical history");
+            return;
+        }
+
+        showStep("patient_4");
+        updatePatientBar(3);
+    }
+
+    else if (step === 4) {
+
+        if (!document.querySelectorAll("#check2 input:checked").length) {
+            alert("⚠️ Select at least one allergy");
+            return;
+        }
+
+        loadDoctors();
+
+        showStep("patient_5");
+        updatePatientBar(4);
+    }
+
+    else if (step === 5) {
+        showStep("patient_6");
+        updatePatientBar(5);
+    }
+}
+
+function checkAgeEngine() {
+
+    let age = parseInt(document.querySelector('input[name="p_age"]').value);
+
+    if (isNaN(age) || age < 0 || age > 110) {
+        alert("⚠️ Age must be between 0 and 110");
+        return false;
+    }
+
+    return true;
+}
+
+function loadDoctors() {
+
+    let age = parseInt(document.querySelector('input[name="p_age"]').value);
+
+    let history = Array.from(document.querySelectorAll("#check1 input:checked"))
+        .map(e => e.value);
+
+    let allergies = Array.from(document.querySelectorAll("#check2 input:checked"))
+        .map(e => e.value);
+
+    let specialties = [];
+
+    specialties.push("General Doctor");
+    // 👶 Pediatrician
+    if (age < 18) {
+        specialties.push("Pediatrician");
+    }
+
+    // ❤️ Cardiologist
+    if (
+        history.includes("diabetes") ||
+        history.includes("hypertension") ||
+        history.includes("heart")
+    ) {
+        specialties.push("Cardiologist");
+    }
+
+    // 🫁 Pulmonology (IMPORTANT FIX)
+    if (
+        history.includes("asthma") ||
+        allergies.includes("respiratory")
+    ) {
+        specialties.push("pulmonology"); // 👈 نفس DB (lowercase)
+    }
+
+    // 🧴 Dermatologist
+    if (allergies.includes("skin")) {
+        specialties.push("Dermatologist");
+    }
+
+    // 🤧 Allergist
+    if (
+        allergies.includes("food") ||
+        allergies.includes("drug") ||
+        allergies.includes("insect")
+    ) {
+        specialties.push("allergist"); // 👈 نفس DB
+    }
+
+  
+
+    fetch("get_doctors.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ specialties })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        console.log("Doctors:", data); // 🔥 مهم للتجربة
+
+        let select = document.getElementById("doctor_select");
+        select.innerHTML = "<option>-- Select Doctor --</option>";
+
+        data.forEach(doc => {
+            let opt = document.createElement("option");
+            opt.value = doc.id;
+            opt.textContent = doc.name + " - " + doc.specialty;
+            select.appendChild(opt);
+        });
+    });
+}
+document.querySelector("form").addEventListener("submit", function(e) {
+
+    let pass = document.getElementById("pass").value;
+    let confirm = document.getElementById("confirm").value;
+
+    if (pass !== confirm) {
+        alert("❌ Passwords do not match!");
+        e.preventDefault();
+    }
+});
+
+</script>
+</body>
+</html>

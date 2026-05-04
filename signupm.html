@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doctor Signup</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+#doctor_form {
+    display: block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="formulaire">
+
+<h2>Doctor Sign Up</h2>
+
+
+<div class="steps-bar" id="doctor_bar">
+    <div class="step-line active"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+    <div class="step-line"></div>
+</div>
+
+<form action="doctor.php" method="POST" id="doctor_form" autocomplete="off">
+<input type="hidden" name="role" value="doctor">
+
+
+<div class="step active" id="doctor_1">
+    <label>First Name</label>
+    <input type="text" name="d_fname" required>
+
+    <label>Last Name</label>
+    <input type="text" name="d_lname" required>
+
+    <div class="nav">
+        <div></div>
+        <button type="button" class="next" onclick="nextDoctor(1)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="doctor_2">
+    <label>Email</label>
+    <input type="email" name="d_email" required>
+
+    <label>Phone</label>
+    <input type="tel" name="d_phone" required pattern="[0-9]{8,15}">
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('doctor_1')">← Back</button>
+        <button type="button" class="next" onclick="nextDoctor(2)">Next ➜</button>
+    </div>
+</div>
+
+
+<div class="step" id="doctor_3">
+    <label>Speciality</label>
+
+    <div class="checkbox-group" id="check3">
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="general">General Medicine
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="cardiology">Cardiology
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="dermatology">Dermatology
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="pediatrics">Pediatrics
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="neurology">Neurology
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="pulmonology">Pulmonology (Respiratory)
+    </label>
+
+    <label>
+        <input type="checkbox" name="d_speciality[]" value="allergist">Allergist
+    </label>
+
+    </div>
+
+    <div class="nav">
+        <button type="button" class="back" onclick="showStep('doctor_2')">← Back</button>
+        <button type="button" class="next" onclick="nextDoctor(3)">Next ➜</button>
+    </div>
+</div>
+
+
+
+<div class="step" id="doctor_4">
+    <label>Password</label>
+    <input type="password" id="doc_pass" name="d_pass" required>
+
+    <label>Confirm Password</label>
+    <input type="password" id="doc_confirm" name="d_confirm" required>
+
+    <button type="submit" class="create-btn">Create Doctor Account</button>
+</div>
+
+</form>
+
+</div>
+</div>
+
+<script>
+
+
+function showStep(id) {
+    document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+
+
+function validateStep() {
+    let current = document.querySelector(".step.active");
+    let inputs = current.querySelectorAll("input, select");
+
+    for (let input of inputs) {
+        if (!input.checkValidity()) {
+            input.reportValidity();
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function updateDoctorBar(step) {
+    let lines = document.querySelectorAll("#doctor_bar .step-line");
+
+    lines.forEach((line, index) => {
+        if (index <= step) {
+            line.classList.add("active");
+        } else {
+            line.classList.remove("active");
+        }
+    });
+}
+
+
+function nextDoctor(step) {
+
+    if (!validateStep()) return;
+
+   
+    if (step === 3) {
+        let checked = document.querySelectorAll("#check3 input:checked");
+        if (checked.length === 0) {
+            alert("⚠️ Select at least one speciality");
+            return;
+        }
+    }
+
+    if (step === 1) {
+        showStep("doctor_2");
+        updateDoctorBar(1);
+    }
+
+    if (step === 2) {
+        showStep("doctor_3");
+        updateDoctorBar(2);
+    }
+
+    if (step === 3) {
+        showStep("doctor_4");
+        updateDoctorBar(3);
+    }
+}
+
+
+document.querySelector("form").addEventListener("submit", function(e) {
+
+    let pass = document.getElementById("doc_pass").value;
+    let confirm = document.getElementById("doc_confirm").value;
+
+    if (pass !== confirm) {
+        alert("❌ Passwords do not match!");
+        e.preventDefault();
+    }
+});
+
+</script>
+
+</body>
+</html>

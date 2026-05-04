@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="left">
+        <img src="image/1.jpg" alt="medical">
+    </div>
+
+    <div class="right">
+        <div class="formulaire">
+            <img src="image/3.jpg" alt="medical">
+            <h2>Welcome Back</h2> 
+
+            <form action="login.php" method="POST">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
+
+                <label for="password">Password</label>
+                <input id="password"name="password"   type="password" required>
+
+                <button type="submit" name="role" value="patient" class="patient">👤 Patient Login</button>
+                <button type="submit" name="role" value="doctor" class="medecin">🩺 Doctor Login</button>
+
+                <p>Don't have an account?</p>
+                <button type="button" class="signup" onclick="window.location.href='signup.html'">Create account</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
