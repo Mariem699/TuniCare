@@ -1,7 +1,7 @@
 # TuniCare - Site Web de Gestion des Patients
 
 ## Description
-TuniCare est un site web conçu pour faciliter la gestion des patients par les médecins. Elle permet aux patients de suivre leurs données de santé, de prendre des rendez-vous, et aux médecins de gérer leurs consultations et interventions.
+TuniCare est un site web conçu pour faciliter la gestion des patients par les médecins. il permet aux patients de suivre leurs données de santé, de prendre des rendez-vous, et aux médecins de gérer leurs consultations et interventions.
 
 ## Fonctionnalités
 - Création et gestion de compte patient/médecin.
