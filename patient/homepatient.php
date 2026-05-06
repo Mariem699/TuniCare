@@ -95,7 +95,7 @@ $apptList = $apptRes->fetch_all(MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Patient Dashboard</title>
