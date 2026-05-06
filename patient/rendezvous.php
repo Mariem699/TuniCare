@@ -116,7 +116,7 @@ $firstDay   = date("N", mktime(0,0,0,$calMonth,1,$calYear));
 $daysInMonth = date("t", mktime(0,0,0,$calMonth,1,$calYear));
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Appointments – Tunicare</title>
