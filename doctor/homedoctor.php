@@ -70,7 +70,7 @@ $lname = preg_replace('/\bdr\b\.?\s*/i', '', $doctor['lname']);
 $initials = strtoupper(substr($fname,0,1).substr($lname,0,1));
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Doctor Dashboard</title>
