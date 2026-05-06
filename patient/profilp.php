@@ -19,7 +19,7 @@ $parts = explode(" ", $user['fname']." ".$user['lname']);
 $initials = strtoupper(substr($parts[0],0,1).(isset($parts[1])?substr($parts[1],0,1):""));
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Profile</title>
