@@ -63,7 +63,7 @@ while($row = $res->fetch_assoc()){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Patient Profile</title>
