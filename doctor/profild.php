@@ -27,7 +27,7 @@ $fname = preg_replace('/\bdr\b\.?\s*/i', '', $doctor['fname']);
 $lname = preg_replace('/\bdr\b\.?\s*/i', '', $doctor['lname']);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Doctor Profile</title>
