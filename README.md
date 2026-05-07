@@ -1,7 +1,7 @@
 # TuniCare - Site Web de Gestion des Patients
 
 ## Description
-TuniCare est un site web conçu pour faciliter la gestion des patients par les médecins. il permet aux patients de suivre leurs données de santé, de prendre des rendez-vous, et aux médecins de gérer leurs consultations et interventions.
+TuniCare est un site web conçu pour faciliter la gestion des patients par les médecins. Il permet aux patients de suivre leurs données de santé, de prendre des rendez-vous, et aux médecins de gérer leurs consultations et interventions.
 
 ## Fonctionnalités
 - Création et gestion de compte patient/médecin.
@@ -17,12 +17,28 @@ TuniCare est un site web conçu pour faciliter la gestion des patients par les m
 - Serveur web (Apache, via XAMPP)
 - HTML & CSS & JavaScript
 
+## Screenshots
+### Page de connexion
+![Login](image/login.png)
+
+### Création de compte (Signup par étapes)
+![Signup](image/signup.png)
+
+### Accueil patient 
+![Accueil](image/dashboard.png)
+
+### Gestion des rendez-vous
+![Rendez-vous](image/appointments.png)
+
+### Conversation avec le médecin
+![Chat](image/chat.png)
+
 ## Installation
 1. visit: [https://github.com/Mariem699/TuniCare](https://github.com/Mariem699/TuniCare)
-1. Clone le repository 
-2. Crée une base de données MySQL (nommée par exemple `tunicare`).
-3. Importer la base de données.
-4. Lance ton serveur web localement.
+2. Clone le repository 
+3. Crée une base de données MySQL (nommée par exemple `tunicare`).
+4. Importer la base de données.
+5. Lance ton serveur web localement.
 
 ## Utilisation
 - Connecte-toi avec ton compte (patient ou médecin).
